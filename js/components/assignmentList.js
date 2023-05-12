@@ -1,40 +1,38 @@
 import Assignment from './Assignment.js'
+import AssignmentTags from "./AssignmentTags.js";
+
 export default {
-    components:{
-        'assignment':  Assignment
-    },
+    components: {Assignment, AssignmentTags},
     'template': `
                 <section v-show="filteredAssignments.length">
                     <h2>{{title}} <span>({{filteredAssignments.length}})</span></h2>
-            
-                    <div>
-                        <button v-for="tag in tags"
-                         @click="currentTag = tag" 
-                         class="btn-normal"
-                         :class="{'btn-blue' : currentTag == tag }"
-                         >{{tag}}</button>
-                    </div>
+                    
+                    <assignment-tags :current-tag="currentTag" @change="currentTag = $event" :intial-tags="assignments.map(a=>a.tag)" />
+<!--                    <assignment-tags :current-tag="currentTag" @change="tagClicked" :intial-tags="assignments.map(a=>a.tag)" />-->
+                    
                     <ul>
                         <assignment v-for="assignment in filteredAssignments"
                             :assignment="assignment" :key="assignment.id"/>
                     </ul>
                 </section>`,
 
-    data(){
-      return {
-          currentTag: 'all'
-      }
+    data() {
+        return {
+            currentTag: 'all'
+        }
     },
-    props:{
+    props: {
         assignments: Array,
         title: String,
     },
-    computed:{
-        tags(){
-            return ['all', ...new Set(this.assignments.map(a=>a.tag)) ]
-        },
-        filteredAssignments(){
-            return this.currentTag =='all' ? this.assignments : this.assignments.filter( a=>a.tag === this.currentTag)
+    computed: {
+        filteredAssignments() {
+            return this.currentTag == 'all' ? this.assignments : this.assignments.filter(a => a.tag === this.currentTag)
+        }
+    },
+    methods: {
+        tagClicked(tag) {
+            this.currentTag = tag;
         }
     }
 
