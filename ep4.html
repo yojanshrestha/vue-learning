@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <!--  <script src="https://cdn.tailwindcss.com"></script>-->
+
+    <style>
+
+    </style>
+
+</head>
+<body>
+
+<div id="app">
+    <app-button>Submit</app-button>
+<!--    <app-button><span>REg</span></app-button>-->
+
+</div>
+
+
+<script>
+
+    let app = {
+        components: {
+            'app-button': {
+                template: `
+                    <button :disabled="processing" @click="toggle">
+                    <slot/>
+                    </button>
+                `,
+                mounted() {
+                    alert('hello');
+                },
+                data(){
+                    return {
+                        'processing':false
+                    }
+                },
+                methods:{
+                    toggle(){
+                        alert('toggle');
+                        this.processing = !this.processing;
+                    }
+                }
+            }
+        }
+    }
+
+    Vue.createApp(app).mount('#app');
+
+</script>
+
+
+</body>
+</html>
