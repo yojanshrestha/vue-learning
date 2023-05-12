@@ -2,7 +2,7 @@ export default {
     'template': `
         <div>
             <button v-for="tag in tags"
-                 @click="$emit('change',tag)" 
+                 @click="$emit('update:currentTag',tag)" 
                  class="btn-normal"
                  :class="{'btn-blue' : currentTag == tag }"
                  >{{tag}}

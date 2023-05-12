@@ -7,7 +7,8 @@ export default {
                 <section v-show="filteredAssignments.length">
                     <h2>{{title}} <span>({{filteredAssignments.length}})</span></h2>
                     
-                    <assignment-tags :current-tag="currentTag" @change="currentTag = $event" :intial-tags="assignments.map(a=>a.tag)" />
+                    <assignment-tags v-model:currentTag="currentTag" :intial-tags="assignments.map(a=>a.tag)" />
+<!--                    <assignment-tags :current-tag="currentTag" @change="currentTag = $event" :intial-tags="assignments.map(a=>a.tag)" />-->
 <!--                    <assignment-tags :current-tag="currentTag" @change="tagClicked" :intial-tags="assignments.map(a=>a.tag)" />-->
                     
                     <ul>
