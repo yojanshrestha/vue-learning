@@ -1,5 +1,9 @@
 ## Learning Vue js
 
+- run server
+```shell
+npx serve
+```
 
 ### ep 13
 - json-server is installed through npm
