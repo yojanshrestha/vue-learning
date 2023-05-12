@@ -1,17 +1,13 @@
 import AssignmentList from './AssignmentList.js'
+import AssignmentCreate from "./AssignmentCreate.js";
 
 export default {
-    components: {
-        'assignmentList': AssignmentList
-    },
+    components: { AssignmentList, AssignmentCreate },
     'template': `
-                <assignmentList title="In-Progress Assignments" :assignments="filters.inProgress"/>
-                <assignmentList title="Complete Assignments" :assignments="filters.completed"/>
+                <assignment-list title="In-Progress Assignments" :assignments="filters.inProgress"/>
+                <assignment-list title="Complete Assignments" :assignments="filters.completed"/>
                 
-                <form @submit.prevent="add">
-                    <input type="text" v-model="newAssignment" placeholder="New Assignment ..."/>
-                    <button type="submit">Add</button>
-                </form>
+                <assignment-create @addNew="add"/>
             `,
 
     data() {
@@ -21,7 +17,6 @@ export default {
                 {name: 'Read Chapter 4', complete: false, id: 2},
                 {name: 'Turn in homework', complete: false, id: 3}
             ],
-            newAssignment: ''
         }
     },
 
@@ -42,12 +37,10 @@ export default {
     },
 
     methods: {
-        add(e) {
-            // alert('add:: '+ this.newAssignment );
+        add(newAssignment) {
             this.assignments.push({
-                name: this.newAssignment, complete: false, id: this.assignments.length +1
+                name: newAssignment, complete: false, id: this.assignments.length +1
             });
-            this.newAssignment = '';
         }
     }
 }
