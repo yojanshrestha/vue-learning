@@ -1,8 +1,9 @@
 import AssignmentList from './AssignmentList.js'
 import AssignmentCreate from "./AssignmentCreate.js";
+import Panel from "./Panel.js";
 
 export default {
-    components: { AssignmentList, AssignmentCreate },
+    components: { AssignmentList, AssignmentCreate,Panel },
     'template': `
                 <assignment-list title="In-Progress Assignments" :assignments="filters.inProgress">
                     <assignment-create @addNew="add"/>
@@ -15,6 +16,33 @@ export default {
                     title="Complete Assignments" 
                     :assignments="filters.completed"/>
                 
+                <panel>
+                    <template v-slot:heading>
+                        this is heading
+                    </template>
+<!--                    <template v-slot:default>-->
+                        this is default text
+<!--                    </template>-->
+                </panel>
+                
+                <panel>
+<!--                    <template v-slot:default>-->
+                        this is default text of anoher panel
+<!--                    </template>-->
+                </panel>
+                
+                <panel theme="gray">
+                    <template v-slot:heading>
+                        this is heading
+                    </template>
+                        this is default text
+                        
+                    <template v-slot:footer>
+                        <div style="border-top: 1px dotted black; margin-top:5px; padding-top:5px">
+                            this is footer
+                        </div>
+                    </template> 
+                </panel>
                 
             `,
 
