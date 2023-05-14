@@ -5,7 +5,9 @@ export default {
     components: {Assignment, AssignmentTags},
     'template': `
                 <section v-show="filteredAssignments.length">
-                    <h2>{{title}} <span>({{filteredAssignments.length}})</span></h2>
+                    <h2>{{title}} <span>({{filteredAssignments.length}})</span> 
+                        <button v-show="canToggle" @click="$emit('toggleClose')">&times;</button>
+                    </h2>
                     
                     <assignment-tags v-model:currentTag="currentTag" :intial-tags="assignments.map(a=>a.tag)" />
 <!--                    <assignment-tags :current-tag="currentTag" @change="currentTag = $event" :intial-tags="assignments.map(a=>a.tag)" />-->
@@ -15,6 +17,9 @@ export default {
                         <assignment v-for="assignment in filteredAssignments"
                             :assignment="assignment" :key="assignment.id"/>
                     </ul>
+                    
+                    <slot></slot>
+                    
                 </section>`,
 
     data() {
@@ -25,6 +30,7 @@ export default {
     props: {
         assignments: Array,
         title: String,
+        canToggle: {type: Boolean, default: false}
     },
     computed: {
         filteredAssignments() {
