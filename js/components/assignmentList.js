@@ -1,10 +1,11 @@
 import Assignment from './Assignment.js'
 import AssignmentTags from "./AssignmentTags.js";
+import Panel from "./Panel.js"
 
 export default {
-    components: {Assignment, AssignmentTags},
+    components: {Assignment, AssignmentTags, Panel},
     'template': `
-                <section v-show="filteredAssignments.length">
+                <Panel v-show="filteredAssignments.length">
                     <h2>{{title}} <span>({{filteredAssignments.length}})</span> 
                         <button v-show="canToggle" @click="$emit('toggleClose')">&times;</button>
                     </h2>
@@ -20,7 +21,11 @@ export default {
                     
                     <slot></slot>
                     
-                </section>`,
+                    <template #footer>
+                       This is footer inside Assignment list
+                    </template>
+                    
+                </Panel>`,
 
     data() {
         return {

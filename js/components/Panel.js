@@ -10,7 +10,7 @@ export default {
             <div>
                 <slot/>
             </div>
-            <div v-if="$slots.footer">
+            <div v-if="$slots.footer" style="border-top: 1px dotted black; margin-top:5px; padding-top:5px">
                 <slot name="footer"/>
             </div>
         </div>

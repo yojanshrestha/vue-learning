@@ -32,13 +32,13 @@ export default {
                 </panel>
                 
                 <panel theme="gray">
-                    <template v-slot:heading>
+                    <template #heading>
                         this is heading
                     </template>
                         this is default text
                         
-                    <template v-slot:footer>
-                        <div style="border-top: 1px dotted black; margin-top:5px; padding-top:5px">
+                    <template #footer>
+                        <div>
                             this is footer
                         </div>
                     </template> 
